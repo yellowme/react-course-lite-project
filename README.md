@@ -51,13 +51,17 @@ Contar con un editor de textos o IDE como:
 
 ## Secciones
 
-* [Creación del proyecto](./MILE-01.md)
-* [Estructura base del proyecto](./MILE-01.md)
-* [Identificar los Snippets de código](./MILE-01.md)
-* [Configurar cliente de la API de GitHub](./MILE-01.md)
-* [Componentes reutilizables](./MILE-02.md)
-  * [Componente: LoadingSpinner](./MILE-02.md)
-  * [Componente: Grid](./MILE-02.md)
-  * [Componente: Card](./MILE-02.md)
-* [Componente: Grilla de repositorios](./MILE-03.md)
-* [Componente: Detalle de un repositorio](./MILE-04.md)
+* [Mile 01](./MILE-01.md)
+  * [Creación del proyecto](./MILE-01.md)
+  * [Estructura base del proyecto](./MILE-01.md)
+  * [Identificar los Snippets de código](./MILE-01.md)
+  * [Configurar cliente de la API de GitHub](./MILE-01.md)
+* [Mile 02](./MILE-02.md)
+  * [Componentes reutilizables](./MILE-02.md)
+    * [Componente: LoadingSpinner](./MILE-02.md)
+    * [Componente: Grid](./MILE-02.md)
+    * [Componente: Card](./MILE-02.md)
+* Mile 03
+  * Componente: Grilla de repositorios
+* Mile 04
+  * Componente: Detalle de un repositorio
