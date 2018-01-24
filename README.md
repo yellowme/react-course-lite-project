@@ -49,26 +49,12 @@ Contar con un editor de textos o IDE como:
 * VSCode
 * Notepad
 
-## Instalación (Utilizando una terminal)
-
-Abre una ventana de tu terminal preferida y en la carpeta de tu preferencia ejecuta:
-
-```bash
-npm install -g create-react-app // Instala globalmente create_react_app
-
-create-react-app repo-browser // Crear una nueva react app en el directorio "repo-browser"
-
-cd repo-browser/ // Ir al directorio "repo-browser"
-npm start  // Iniciar el servidor node con la app de react
-```
-
-El comando `npm start` levantará un servidor con la aplicación en el puerto *3000* del *localhost*. Puedes abrir a tu navegador e ingresar a la dirección `localhost:3000`.
-
 ## Secciones
 
-* Creación del proyecto
+* [Creación del proyecto](./MILE-01.md)
 * Estructura base del proyecto
-* Agregar cliente de la API de GitHub
+* Identificar los Snippets de código
+* Configurar cliente de la API de GitHub
 * Componentes base
 * Componente: Grilla de repositorios
 * Componente: Detalle de un repositorio
