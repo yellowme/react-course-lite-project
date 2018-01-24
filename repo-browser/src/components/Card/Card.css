@@ -1,0 +1,11 @@
+.card {
+    padding: 20px 10px;
+    background-color: var(--color-card-background);
+    border-radius: var(--base-border-radius);
+}
+
+.card--align-horizontal {
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+}
