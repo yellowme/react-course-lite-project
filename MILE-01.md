@@ -57,7 +57,7 @@ En tu terminal preferida ejecuta:
 
 ```bash
 npm install --save react-router-dom
-npm install --save classname
+npm install --save classnames
 npm install --save prop-types
 ```
 
