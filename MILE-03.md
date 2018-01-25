@@ -47,7 +47,8 @@ class App extends Component {
 export default App;
 ```
 
-Ahora importemos el archivo `githubClient` en la parte de arriba de nuestro archivo Repositories.js
+Ahora importemos el archivo `githubClient` en la parte de arriba de nuestro archivo `Repositories.js`.
+
 ```
 //Repositories.js
 import React, {Component} from 'react';
@@ -84,13 +85,13 @@ class Repositories extends Component {
 export default Repositories;
 ```
 
-Ahora entremos a `localhost:3000` y si todo salió bien deberías de ver lo siguiente en la consola del navegador:
+Entremos a `localhost:3000` y si todo salió bien deberías de ver lo siguiente en la consola del navegador:
 
 <p align='center'>
 <img src='./images/repositories-console-log.png' width='600' alt='repo-browser'>
 </p>
 
-Ahora que ya podemos obtener los repositorios es hora de guardarlos en el `state`, así React sabrá que cuando se obtengan los repositorios el componente `Repositories` debe de renderizarse de nuevo.
+Ya podemos obtener los repositorios es hora de guardarlos en el `state`, así React sabrá que cuando se obtengan los repositorios el componente `Repositories` debe de renderizarse de nuevo.
 
 ```js
 import React, {Component} from 'react';
@@ -121,7 +122,7 @@ export default Repositories;
 
 ## Componente RepositoriesGrid
 
-Ahora agreguemos un componente nuevo llamado `RepositoriesGrid`. Este componente solo será utilizado por el componente `Repositories` por lo que debe de ir dentro de su carpeta `components`.
+Agreguemos un componente nuevo llamado `RepositoriesGrid`. Este componente solo será utilizado por el componente `Repositories` por lo que debe de ir dentro de su carpeta `components`.
 
 
 <p align='center'>
@@ -160,7 +161,7 @@ export default RepositoriesGrid;
 
 Es importante definir los props que son necesarios para que el componente se renderice correctamente. En este caso definimos que el componente  `RepositoriesGrid ` espera que le pasen via prop un `repositoriesList` el cual es un array de objetos. Donde cada objeto debe tener un `id` (número) y un `repoUrl` (string).
 
-Ahora en el archivo `Repositories` importa el componente `RepositoriesGrid` y úsalo para renderizar la lista de repositorios.
+En el archivo `Repositories` importa el componente `RepositoriesGrid` y úsalo para renderizar la lista de repositorios.
 
 ```js
 //Repositories.js
@@ -183,7 +184,7 @@ Si todo salió bien al entrar a tu navegador deberías de ver algo como esto:
 
 El componente `Grid` tiene la funcionalidad de separar a sus hijos en una grilla de 5 columnas por N filas. Si entras a ver el código verás que es un solo `div` que utiliza los estilos de `grid-layout` de `css`.
 
-Ahora que ya tenemos los repositorios y están ordenador agreguemos las tarjetas para cada uno. Creemos un nuevo componente `RepositoryCard`en la carpeta `components` de `RepositoryGrid`. 
+Ya tenemos los repositorios y están ordenados; agreguemos las tarjetas para cada uno. Creemos un nuevo componente `RepositoryCard`en la carpeta `components` de `RepositoryGrid`. 
 
 `RepositoryCard` debe recibir un objeto `repository` que contenga toda la información que será mostrada en la tarjeta. De nueva cuenta, debido a que este componente no maneja estados podemos hacer uso de un `functional stateless component`. El componente hará uso de las clases reutilizables `Card`, `CardAvatar`, `CardDetails` y `CardItem` y debe verse así:
 
@@ -219,7 +220,7 @@ RepositoryCard.propTypes = {
 export default RepositoryCard;
 ```
 
-Ahora importemos nuestro nuevo componente en `RepositoryGrid` y usémoslo.
+Importemos nuestro nuevo componente en `RepositoryGrid` y usémoslo.
 
 ```js
 //RepositoryGrid.js
@@ -310,7 +311,7 @@ export default Repositories;
 ```
 
 
-Ahora el mensaje ya no debe aparecer. Pero vamos a **METERLE MÁS DISEÑO**. Agreguemos el componente `LoadingSpiner` de la siguiente manera:
+El mensaje ya no debe aparecer. Pero vamos a **METERLE MÁS DISEÑO**. Agreguemos el componente `LoadingSpiner` de la siguiente manera:
 
 ```
 //Repositories.js
