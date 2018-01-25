@@ -25,13 +25,41 @@ class Repositories extends Component {
 export default Repositories;
 ```
 
-Ahora importemos el archivo `githubClient`, este contiene la función `getRepositories` con la siguiente firma: 
+Hagamos que el componente  `App`   utilize el componente que acabamos de sacar del horno. 
 
+```js
+//App.js
+import React, {Component} from 'react';
+
+import './App.css';
+import Repositories from "./pages/Repositories/Repositories";
+class App extends Component {
+
+    render() {
+        return (
+            <div className="app">
+                <Repositories/>
+            </div>
+        );
+    }
+}
+
+export default App;
+```
+
+Ahora importemos el archivo `githubClient` en la parte de arriba de nuestro archivo Repositories.js
+```
+//Repositories.js
+import React, {Component} from 'react';
+import * as githubClient from "../../services/githubClient/githubClient";
+```
+
+Este archivo contiene la función `getRepositories` con la siguiente firma: 
 ``` js
 getRepositories(searchQuery = '', language = '',sortBy = '')
 ```
 
-Asegurémonos que el método nos devuelve una lista de repositorios agregándolo al método `componentDidMount`  
+Asegurémonos que el método nos devuelve una lista de repositorios agregándolo al método `componentDidMount`   de nuestro componente `Repositories`.
 
 
 ```js
@@ -303,7 +331,7 @@ render() {
 ```
 
 
-Como toque final agreguemos un título para que nuestra grillas de repositorios se va muy bonita. 
+Como toque final agreguemos un título para que nuestra grilla de repositorios se va muy bonita. 
 
 ```js
 //Repositorioes.js
@@ -325,6 +353,126 @@ render() {
 ```
 
 ## Componente SearchBar
+
+Ya que podemos mostrar los repositorios, ahora agreguemos la capacidad de buscarlos. Iniciemos creando un componente `RepositorySearchBar` que será un sub-componente de `Repositories`.
+
+```js
+// RepositorySearchBar.js
+import React, {Component} from "react";
+
+import './RepositorySearchBar.css';
+
+class RepositorySearchBar extends Component {
+    render() {
+        return (
+            <form
+                className="repositories__search-form"
+            >
+                HOLA SOY LA SEARCH BAR, SCOOBY DO PA PA! 
+            </form>
+        );
+    }
+}
+
+export default RepositorySearchBar;
+
+```
+
+Agreguemos  `RepositorySearchBar`  dentro del método `render` de `Repositories`.
+
+```js
+//Repositories.js
+render() {
+        const {repositoriesList, loading} = this.state;
+        return (
+            <div className="repositories">
+                <RepositorySearchBar onSearchSubmit={this.handleSearchSubmit}/>
+                <div className="repositories__title">
+                    <h1>Repositories</h1>
+                </div>
+                {loading ?
+                    (<LoadingSpinner/>)
+                    :
+                    (<RepositoriesGrid repositoriesList={repositoriesList}/>)
+                }
+            </div>
+        );
+    }
+```
+
+Si entras al navegador debería de aparecer esta preciosura:
+
+<p align='center'>
+<img src='./images/search-bar-scooby-do.png' width='600' alt='repo-browser'>
+</p>
+
+
+Antes de empezar a agregar los campos de búsqueda aprendamos que son los **controlled components**. 
+
+### Controlled components crash coursito
+
+Elementos como  `<input/>` o `<select/>` normalmente manejan su estado por si mismos. Sin embargo si queremos usar **React** para manipular su valor, es necesario que definamos dos props values; el prop _value_ y el prop _onChange_. 
+
+El prop _value_ nos permite definir el valor que debe aparecer en el elemento, y el prop _onChange_ nos permite suscribirnos a un evento que es disparado cada vez que algo o alguien causa un cambio en el estado del elemento. 
+
+Por ejemplo, cambiemos por un momento nuestro archivo App.js a lo siguiente: 
+
+```js
+import React, {Component} from 'react';
+import AppRoutes from "./components/AppRoutes/AppRoutes";
+
+import './App.css';
+
+class App extends Component {
+    state = {value: ''};
+
+    handleChange = (event) => {
+        this.setState({value: event.target.value});
+    };
+
+    render() {
+        return (
+            <label>Name:<input type="text" value={this.state.value} onChange={this.handleChange}/></label>
+        );
+    }
+}
+
+export default App;
+
+```
+
+Este deberá de mostrar lo siguiente en el navegador: 
+
+
+Debes poder escribir como si fuera un input normal, lo sé, no hay mucha magia aquí, se comporta tal y como se esperaba. Si tienes instalado el React Web tools, ábrelo para que veamos como el `state` del componente va cambiando cada vez que modificamos el input. 
+
+Algo que nos permite **React** es utilizar el prop _value_ en un elemento input es poder manipular su valor desde otro lugar. Por ejemplo podríamos poner un valor inicial: 
+
+```js
+import React, {Component} from 'react';
+import AppRoutes from "./components/AppRoutes/AppRoutes";
+
+import './App.css';
+
+class App extends Component {
+    state = {value: 'SOY UN VALOR INICIAL WOW'};
+
+    handleChange = (event) => {
+        this.setState({value: event.target.value});
+    };
+
+    render() {
+        return (
+            <label>Name:<input type="text" value={this.state.value} onChange={this.handleChange}/></label>
+        );
+    }
+}
+
+export default App;
+
+```
+
+
 La página de **Buscar Repositorios** está compuesta por dos componentes: 
 
 - Coding  session
