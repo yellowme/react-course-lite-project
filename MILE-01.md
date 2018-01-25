@@ -3,12 +3,20 @@
 Abre una ventana de tu terminal preferida y en la carpeta de tu preferencia ejecuta:
 
 ```bash
-npm install -g create-react-app // Instala globalmente create_react_app
+npm install -g create-react-app
+```
 
-create-react-app repo-browser // Crear una nueva react app en el directorio "repo-browser"
+Luego de instalar globalmente create_react_app, crear una nueva react app en el directorio `repo-browser`:
 
-cd repo-browser/ // Ir al directorio "repo-browser"
-npm start  // Iniciar el servidor node con la app de react
+```bash
+create-react-app repo-browser
+```
+
+Ingresa al directorio "repo-browser" e inicia el servidor node con la app de react:
+
+```bash
+cd repo-browser/
+npm start
 ```
 
 Para correr tu aplicación ejecuta:
@@ -47,7 +55,7 @@ Luego, dentro de la recién creada carpeta `componentes/` agrega otras carpetas:
 * Grid
 * LoadingSpinner
 
-Finalmente, dentro de la carpeta `services`agrega otra carpeta llamada `parsers`.
+Finalmente, dentro de la carpeta `services`agrega otra carpeta llamada `githubClient`.
 
 ## Agregar dependencias del proyecto
 
@@ -71,12 +79,11 @@ Por ejemplo, llamadas a una fuente de datos o los estilos de CSS que usaremos a 
 
 Dirígete a la carpeta `snippets`:
 
-* Copia el archivo llamado `githubClient.js` a la carpeta `services`del proyecto. Recuerda esta carpeta está en `repo-browser/src/services`
-* Copia la carpeta llamada `parsers` a la carpeta `services`del proyecto.
+* Copia, o sobreescribe, la carpeta llamada `githubClient/` dentro la carpeta `services` de tu proyecto.
 
 ### Entendiendo el modelo
 
-Dentro de la carpeta `parsers` que acabas de agregar al proyecto encontrás:
+Dentro de la carpeta `githubClient/services/parsers` que acabas de agregar al proyecto encontrás:
 
 * Un archivo llamado `contributorParser.js`
 * Un archivo llamado `repositoryParser.js`
@@ -85,27 +92,23 @@ Como buena práctica, en tus proyectos lo primero siempre deberá ser entender e
 
 En nuestro caso tenemos dos modelos principales: `Repository` y `Contributor`
 
-El modelo `Repository` lucirá así:
+El modelo `Repository` contendrá los siguientes atributos:
 
 ```js
-{
-    id,
-    name,
-    ownerAvatarUrl,
-    repoUrl,
-    startGazersCount,
-    forksCount,
-    description,
-    githubPageLink
-}
+id
+name
+ownerAvatarUrl
+repoUrl
+startGazersCount
+forksCount
+description
+githubPageLink
 ```
 
-El modelo `Contributor` lucirá así:
+El modelo `Contributor` contendrá los siguientes atributos:
 
 ```js
-{
-    loginName,
-    avatarUrl,
-    githubPageLink,
-}
+loginName
+avatarUrl
+githubPageLink
 ```
