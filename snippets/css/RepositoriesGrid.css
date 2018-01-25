@@ -1,0 +1,11 @@
+.repositories__link {
+    display: flex;
+    padding: 20px;
+    text-decoration: none;
+    color: var(--color-light-text);
+    transition: transform var(--transition-base-duration);
+}
+
+.repositories__link:hover {
+    transform: scale(1.04);
+}

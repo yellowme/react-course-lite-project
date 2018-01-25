@@ -1,0 +1,17 @@
+.repository-details--nav-bar {
+    text-align: left;
+    padding: 10px 20px;
+}
+
+.repository-details__home-link {
+    display: inline-block;
+    padding: 5px 10px;
+    text-decoration: none;
+    background-color: var(--color-accent);
+    color: var(--color-dark-text);
+    border-radius: var(--base-border-radius);
+}
+
+.repository__contributors-title {
+    text-align: center;
+}
