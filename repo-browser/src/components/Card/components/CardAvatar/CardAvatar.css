@@ -1,0 +1,11 @@
+.card__image-container {
+    height: 150px;
+    width: 150px;
+    margin: 0 auto;
+}
+
+.card__image {
+    width: inherit;
+    height: inherit;
+    border-radius: 50%;
+}
