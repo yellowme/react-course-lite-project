@@ -18,6 +18,12 @@ Para comenzar deberás descargar este repositorio:
 git clone git@github.com:yellowme/react-course-lite-project.git
 ```
 
+ó
+
+```bash
+git clone https://github.com/yellowme/react-course-lite-project.git
+```
+
 ### Librerías
 
 Para poder crear aplicaciones con React se debe tener instalados las siguientes librerías y herramientas:
@@ -51,17 +57,23 @@ Contar con un editor de textos o IDE como:
 
 ## Secciones
 
-* [Mile 01](./MILE-01.md)
-  * [Creación del proyecto](./MILE-01.md)
-  * [Estructura base del proyecto](./MILE-01.md)
-  * [Identificar los Snippets de código](./MILE-01.md)
-  * [Configurar cliente de la API de GitHub](./MILE-01.md)
-* [Mile 02](./MILE-02.md)
-  * [Componentes reutilizables](./MILE-02.md)
-    * [Componente: LoadingSpinner](./MILE-02.md)
-    * [Componente: Grid](./MILE-02.md)
-    * [Componente: Card](./MILE-02.md)
-* Mile 03
-  * Componente: Grilla de repositorios
-* Mile 04
-  * Componente: Detalle de un repositorio
+* [Milla 1](./MILE-01.md)
+  * Creación del proyecto
+  * Estructura base del proyecto
+  * Identificar los Snippets de código
+  * Configurar cliente de la API de GitHub
+* [Milla 2](./MILE-02.md)
+  * Componentes reutilizables
+    * LoadingSpinner
+    * Grid
+    * Card
+  * Playground
+    * ContributorsCard
+* [Milla 3](./MILE-03.md)
+  * Página: Buscador de repositorios
+    * Trabajar con la API de GitHub
+    * Utilizar los componentes: Grid, LoadingSpinner y Card
+    * Agregar un SearchBar
+    * Configurar tu primera ruta: React Router
+* Milla 4
+  * Página: Página de un repositorio
