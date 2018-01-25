@@ -147,6 +147,8 @@ export default Card;
 
 Ahora que tienes los componentes reutilizables que hemos creado para ti en este curso, puedes jugar con ellos y utilizalos dentro de tu archivo `repo-browser/App.js`
 
+Para este caso deberás agregar el archivo de estilos que se encuentra en `snippets/App.css`. El contenido de este archivo debe reemplazar al generado por `create-react-app`.
+
 ```jsx
 import React, { Component } from 'react';
 import './App.css';
@@ -167,3 +169,22 @@ export default App;
 ```
 
 ### Usando el componente `Card`
+
+Utilizando el modelo `Contributor` y el componente `Card` podemos generar un nuevo componente para mostrar la información de un contribuidor en formato de tarjeta:
+
+```jsx
+import React from 'react';
+import Card, {CardItem, CardDetails, CardAvatar, CardLink} from "../../../../../components/Card/Card";
+
+const ContributorCard = ({contributor}) => (
+    <Card>
+        <CardAvatar imageSrc={contributor.avatarUrl}/>
+        <CardDetails>
+            <CardItem label="Name">{contributor.loginName}</CardItem>
+            <CardLink href={contributor.githubPageLink}>Github</CardLink>
+        </CardDetails>
+    </Card>
+);
+
+export default ContributorCard;
+```
