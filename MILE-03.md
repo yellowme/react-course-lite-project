@@ -1,5 +1,16 @@
 # Grilla de Repositorios
 
+## Antes de iniciar 
+
+Obtén el código base para continuar desde esta sección:
+
+```bash
+git fetch origin
+git checkout starter-mile-02
+```
+
+## Coding Time
+
 Ahora iremos paso a paso creando la primera página de la aplicación. Lo primero que haremos será crear una página nueva llamada Repositories. Hay que recordar que las páginas son componentes de React, la única diferencia es que estas están relacionadas a una URL. En este caso la página **Repositories** está relacionada con la url raíz de nuestro sitio  (“/”). 
 
 La página **Repositories** debe tener la siguiente estructura inicial en nuestro directorio. 
