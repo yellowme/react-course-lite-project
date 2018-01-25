@@ -6,5 +6,6 @@
 
 .card__image {
     width: inherit;
+    height: inherit;
     border-radius: 50%;
 }
