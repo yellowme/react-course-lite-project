@@ -7,5 +7,9 @@
 .card--align-horizontal {
     display: flex;
     align-items: center;
-    padding-left: 30px;
+}
+
+.card--centered {
+    margin-right: auto;
+    margin-left: auto;
 }

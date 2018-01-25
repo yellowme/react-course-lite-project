@@ -3,8 +3,8 @@ import * as classnames from "classnames";
 import './CardDetails.css'
 
 
-const CardDetails = ({children,className}) => (
-    <div className={classnames('card__details',className)}>
+const CardDetails = ({children, className}) => (
+    <div className={classnames('card__details', className)}>
         {children}
     </div>
 );

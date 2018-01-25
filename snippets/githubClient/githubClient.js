@@ -1,5 +1,5 @@
-import * as contributorParser from './parsers/contributorParser';
-import * as repositoryParser from './parsers/repositoryParser';
+import * as contributorParser from './services/parsers/contributorParser';
+import * as repositoryParser from './services/parsers/repositoryParser';
 
 const GITHUB_API_URL = 'https://api.github.com/';
 
@@ -30,16 +30,19 @@ export function getRepositories(searchQuery = '', language = '', sortBy = '') {
         .then(repositoryList => repositoryList.map(repositoryParser.parse));
 }
 
-export function getRepositoryContributors(owner, repository) {
+function getRepositoryURL(owner, repository) {
     const repoURI = `${owner}/${repository}`;
-    const url = `${GITHUB_API_URL}repos/${repoURI}/contributors`;
+    return `${GITHUB_API_URL}repos/${repoURI}`;
+}
+
+export function getRepositoryContributors(owner, repository) {
+    const url = `${getRepositoryURL(owner, repository)}/contributors`;
     return getFromAPI(url)
         .then(contributorsList => contributorsList.map(contributorParser.parse));
 }
 
 export function getRepository(owner, repository) {
-    const repoURI = `${owner}/${repository}`;
-    const url = `${GITHUB_API_URL}repos/${repoURI}`;
+    const url = getRepositoryURL(owner, repository);
     return getFromAPI(url)
         .then(repositoryParser.parse);
 }

@@ -75,7 +75,7 @@ Estos componentes reutilizables deberán ser copiados dentro de la carpeta `repo
   * Grid.js
 * LoadingSpinner
   * LoadingSpinner.css
-  * LoadingSpinner.
+  * LoadingSpinner.js
   
 A continuación se presenta el código JSX de cada uno de los componentes que hemos creado para ti en este curso.
 
@@ -168,23 +168,40 @@ class App extends Component {
 export default App;
 ```
 
-### Usando el componente `Card`
+## Usando el componente `Card`
 
 Utilizando el modelo `Contributor` y el componente `Card` podemos generar un nuevo componente para mostrar la información de un contribuidor en formato de tarjeta:
 
 ```jsx
-import React from 'react';
-import Card, {CardItem, CardDetails, CardAvatar, CardLink} from "../../../../../components/Card/Card";
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import Card, {
+    CardItem, CardDetails, CardAvatar, CardLink
+} from "../../../../../../../components/Card/Card";
 
-const ContributorCard = ({contributor}) => (
-    <Card>
-        <CardAvatar imageSrc={contributor.avatarUrl}/>
-        <CardDetails>
-            <CardItem label="Name">{contributor.loginName}</CardItem>
-            <CardLink href={contributor.githubPageLink}>Github</CardLink>
-        </CardDetails>
-    </Card>
-);
+class ContributorCard extends Component {
+
+    render() {
+        const {contributor} = this.props;
+        return (
+            <Card>
+                <CardAvatar imageSrc={contributor.avatarUrl}/>
+                <CardDetails>
+                    <CardItem label="Name">{contributor.loginName}</CardItem>
+                    <CardLink href={contributor.githubPageLink}>Github</CardLink>
+                </CardDetails>
+            </Card>
+        );
+    }
+}
+
+ContributorCard.propTypes = {
+    contributor: PropTypes.shape({
+        avatarUrl: PropTypes.string,
+        loginName: PropTypes.string.isRequired,
+        githubPageLink: PropTypes.string.isRequired,
+    })
+};
 
 export default ContributorCard;
 ```
