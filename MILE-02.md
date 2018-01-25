@@ -165,3 +165,5 @@ class App extends Component {
 
 export default App;
 ```
+
+### Usando el componente `Card`

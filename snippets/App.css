@@ -1,0 +1,28 @@
+/**
+ * Application style configuration
+ */
+/* TODO: Extract application configuration */
+html {
+  --color-app-background: #292c33;
+  --color-card-background: #34373d;
+  --color-accent: #33C4F7; /* Beautiful React's neon-blue */
+
+  --color-opaque-text: #aaa;
+  --color-light-text: white;
+  --color-dark-text: black;
+
+  --transition-base-duration: 400ms;
+  --transition-short-duration: 200ms;
+
+  --base-border-radius: 6px;
+}
+
+/* TODO: Extract document global styles */
+html {
+  background-color: var(--color-app-background);
+  color: var(--color-light-text);
+}
+
+.app {
+  font-family: 'Source Sans Pro', Helvetica, sans-serif;
+}
