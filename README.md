@@ -15,7 +15,7 @@ Durante el curso se realizará la construcción de una aplicación en la cual po
 Para comenzar deberás descargar este repositorio:
 
 ```bash
-git clone git@github.com:com:yellowme/react-course-lite-project.git
+git clone git@github.com:yellowme/react-course-lite-project.git
 ```
 
 ### Librerías
