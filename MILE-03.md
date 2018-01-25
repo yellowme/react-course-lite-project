@@ -353,7 +353,7 @@ render() {
     }
 ```
 
-## Componente SearchBar
+## Componente RepositorySearchBar
 
 Ya que podemos mostrar los repositorios, ahora agreguemos la capacidad de buscarlos. Iniciemos creando un componente `RepositorySearchBar` que será un sub-componente de `Repositories`.
 
@@ -472,6 +472,129 @@ class App extends Component {
 export default App;
 
 ```
+
+Hagamos un ejemplo más, donde hay 2 inputs donde no importa en donde escribas los dos siempre tendrán el mismo mensaje. 
+
+```js
+import React, {Component} from 'react';
+
+import './App.css';
+
+class App extends Component {
+    state = {value: ''};
+
+    handleChange = (event) => {
+        this.setState({value: event.target.value});
+    };
+
+    render() {
+        return (<div>
+                <label>Original:<input type="text" value={this.state.value}
+                                       onChange={this.handleChange}/></label>
+                <br/>
+                <label>Copy:<input type="text" value={this.state.value}
+                                    onChange={this.handleChange}/></label>
+            </div>
+        );
+    }
+}
+
+export default App;
+```
+
+Regresemos a la normalidad nuestro componente `App` (pueden verlo arriba más arriba en esta guía). Ahora sigamos trabajando en el `RepositorySearchBar `. Si vemos el diseño de nuestra lujosa aplicación podemos observar que nuestra search bar se compone por dos dropdowns, un input y un botón. Vamos a agregarlos. 
+
+```js
+import React, {Component} from "react";
+import './RepositorySearchBar.css';
+
+class RepositorySearchBar extends Component {
+
+    render() {
+        return (
+            <form
+                className="repositories__search-form"
+            >
+                <select
+
+                    className="repositories__search-language-dropdown"
+                >
+                    <option value="php">Php</option>
+                    <option value="ruby">Ruby</option>
+                    <option value="javascript">Javascript</option>
+                </select>
+                <select
+
+                    className=".repositories__search-sort-dropdown"
+                >
+                    <option value="stars">Stars</option>
+                    <option value="forks">Forks</option>
+                    <option value="updated">Last updated</option>
+                </select>
+                <input
+                    placeholder="Type keywords"
+                    className="repositories__search-text-input"
+                    type="text"
+                />
+                <button
+                    className="repositories__search-button"
+                    type="submit"
+                >
+                    Search
+                </button>
+            </form>
+        );
+    }
+}
+
+
+export default RepositorySearchBar;
+
+```
+ 
+No se a ti, pero a mi me dio dolor ocular la cantidad de HTML que hay ahí, pero funciona, se ve correctamente nuestra aplicación.
+
+<p align='center'>
+<img src='./images/repositories-search-bar.png' width='800' alt='repo-browser'>
+</p>
+
+Hagamos un poco de limpieza creando sub-componentes para cada elemento del form. En total serán 3 sub-componentes: 
+
+#### Sub-componentes
+
+*  `LanguageDropdown`
+* `SortDropdown`
+* `SearchBarInput`
+
+
+Mostraré como hacer el componente `SortDropdown` y dejaré a la capacidad del lector hacer los demás.
+
+Movamos todo el select con la clase `repositories__search-sort-dropdown ` a su propio componente. Recuerda ponerlo dentro de la carpeta `components` del componente `RepositorySearchBar`. 
+
+Nuestro archivo `SortDropDown.js` debe verse así:
+
+```js
+import React from 'react';
+
+const SortDropdown = () => (
+    <select
+        className=".repositories__search-sort-dropdown"
+    >
+        <option value="stars">Stars</option>
+        <option value="forks">Forks</option>
+        <option value="updated">Last updated</option>
+    </select>
+);
+
+export default SortDropdown;
+
+```
+
+
+
+
+
+
 
 
 La página de **Buscar Repositorios** está compuesta por dos componentes: 
