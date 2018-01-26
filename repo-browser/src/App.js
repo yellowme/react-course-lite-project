@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner';
+import Repositories from "./pages/Repositories/Repositories";
 
 class App extends Component {
   render() {
     return (
       <div>
-        <LoadingSpinner />
+        <Repositories />
       </div>
     );
   }

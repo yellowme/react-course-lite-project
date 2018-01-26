@@ -1,0 +1,47 @@
+.repositories__search-form {
+    width: 70%;
+    min-width: 500px;
+    display: flex;
+    margin: 40px auto;
+}
+
+.repositories__search-language-dropdown,
+.repositories__search-sort-dropdown {
+    margin-right: 20px;
+}
+
+.repositories__search-button {
+    border: 0;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    font-weight: bold;
+    color: var(--color-dark-text);
+    background-color: var(--color-accent);
+
+    border-top-left-radius: 0px;
+    border-top-right-radius: var(--base-border-radius);
+    border-bottom-right-radius: var(--base-border-radius);
+    border-bottom-left-radius: 0px;
+
+    cursor: pointer;
+}
+
+.repositories__search-text-input {
+    width: 180px;
+    height: 28px;
+    margin-left: auto;
+    padding: 5px 10px;
+    border: 0;
+    outline-color: var(--color-accent);
+    background-color: var(--color-card-background);
+    color: var(--color-light-text);
+
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-top-left-radius: var(--base-border-radius);
+    border-bottom-left-radius: var(--base-border-radius);
+}
+
+.repositories__search-text-input::-webkit-input-placeholder {
+    color: var(--color-opaque-text);
+}
