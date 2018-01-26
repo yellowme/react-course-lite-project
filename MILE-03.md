@@ -249,7 +249,7 @@ const RepositoriesGrid = ({repositoriesList}) => {
         <Grid noItemsMessage="No results found">
             {repositoriesList.map(repository => (
                     <RepositoryCard
-                        id={repository.id} //<-- No olvidemos el key
+                        key={repository.id} //<-- No olvidemos el key
                         repository={repository}
                     />
             ))}
