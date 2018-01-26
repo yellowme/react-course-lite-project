@@ -7,6 +7,7 @@ Obtén el código base para continuar desde esta sección:
 ```bash
 git fetch origin
 git checkout starter-mile-02
+npm install
 ```
 
 ## Coding Time
