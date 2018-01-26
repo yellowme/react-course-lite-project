@@ -590,29 +590,276 @@ export default SortDropdown;
 
 ```
 
+Luego de crear todos los subcomponentes el método `render` de `RepositorySearchBar` ya no debe darte ganas de replantearte tu selección de carrera y también de verse algo como así:
+
+```js
+	render() {
+        return (
+            <form className="repositories__search-form">
+                <LanguageDropdown/>
+                <SortDropdown/>
+                <SearchBarInput/>
+                <button className="repositories__search-button" type="submit">
+                    Search
+                </button>
+            </form>
+        );
+    }
+``` 
 
 
+Un componente solo debe de tener en su estado datos que le interesen, en este caso, podríamos dejar que cada sub-componente maneje su propio estado y hacer que el componente padre (`RepositorySearchBar`) les solicite su estado actual cada vez que el usuario haga clic en el botón “Search”. Eso suena complicado y por suerte hay una mejor manera. 
+
+Hagamos que `RepositorySearchBar` sea el encargado de guardar el estado de sus hijos, de esta manera no tenemos que estarles pidiendo su valor actual cada vez que queramos hacer una búsqueda. 
+
+Cómo se hizo anteriormente les mostraré como hacer que el padre (`RepositorySearchBar`) guarda el estado de uno de sus hijos y queda a discreción del lector hacer los demás.
+
+Primero agreguemos los props _value_ y _onChange_ al sub-componente `SortDropdown` y agreguemos uno más, el prop _name_. Este será usado por el padre para saber de quien es el estado que tiene que guardar. 
+
+Nuestro archivo `SortDropdown ` debe verse de la siguiente manera:
+
+```js
+import React from 'react';
+import PropTypes from 'prop-types';
+
+const SortDropdown = ({name, value, onChange}) => (
+    <select
+        name={name}
+        className=".repositories__search-sort-dropdown"
+        onChange={onChange}
+        value={value}
+    >
+        <option value="stars">Stars</option>
+        <option value="forks">Forks</option>
+        <option value="updated">Last updated</option>
+    </select>
+);
+
+SortDropdown.propTypes = {
+    name: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired,
+    value: PropTypes.string.isRequired,
+};
+
+export default SortDropdown;
+
+```
+
+No olviden que los PROP-TYPES son importantes.
+
+Dentro de nuestro componente `RepositorySearchBar` agreguemos en el estado, el valor inicial de `SortDropdown`  y el método que utilizaremos para suscribirnos a sus cambios.
+
+```js
+import React, {Component} from "react";
+
+import SearchBarInput from "./components/SearchBarInput/SearchBarInput";
+import LanguageDropdown from "./components/LanguageDropdown/LanguageDropdown";
+import SortDropdown from "./components/SortDropdown/SortDropDown";
+
+import './RepositorySearchBar.css';
+
+class RepositorySearchBar extends Component {
+    state = {
+        sortBy: 'stars',
+    };
+
+    handleOnChange = (event) => {
+        const {value, name} = event.target;
+        this.setState({[name]: value});
+    };
+
+    render() {
+        const {sortBy} = this.state;
+        return (
+            <form
+                className="repositories__search-form"
+            >
+                <LanguageDropdown/>
+                <SortDropdown name="sortBy" value={sortBy} onChange={this.handleOnChange}/>
+                <SearchBarInput/>
+                <button className="repositories__search-button" type="submit">
+                    Search
+                </button>
+            </form>
+        );
+    }
+}
+
+export default RepositorySearchBar;
+
+```
+
+La función handleOnChange recibe un evento del navegador, este evento trae consigo el valor actual del elemento al igual que su nombre. De esta manera nosotros podemos utilizar esta función para manejar los cambios para todos los sub-componentes. Revisemos que funciona en **React Web tools**y si todo está bien, es momento de agregar lo necesario para hacer la búsqueda. 
+
+## YA POR FIN VAMOS A BUSCAR REPOSITORIOS!
+
+En React podemos suscribirnos al evento `onSubmit` de un form así que utilicemos este evento para disparar la búsqueda de repositorios. Primero hay que suscribirnos via props al evento y luego hay que prevenir el comportamiento por defecto del submit. En este caso el encargado de hacer la búsqueda será el componente `Repositories` así que utilizaremos el prop `onSearchSubmit` para mandarle el estado actual de los campos de búsqueda.
+
+Nuestro `RepositorySearchBar` debió de quedar de la siguiente manera: 
+
+```js
+RepositorySearchBar.js
+import React, {Component} from "react";
+import PropTypes from 'prop-types';
+
+import SearchBarInput from "./components/SearchBarInput/SearchBarInput";
+import LanguageDropdown from "./components/LanguageDropdown/LanguageDropdown";
+import SortDropdown from "./components/SortDropdown/SortDropDown";
+
+import './RepositorySearchBar.css';
+
+class RepositorySearchBar extends Component {
+    state = {
+        searchQuery: '',
+        language: 'php',
+        sortBy: 'stars',
+    };
+
+    //Método que sirve para manejar el envio del evento
+    handleOnSubmit = (event) => {
+        event.preventDefault();
+        const {onSearchSubmit} = this.props;
+        //Prop que envia la información al componente Repositories
+        onSearchSubmit({...this.state});
+    };
+
+    handleOnChange = (event) => {
+        const {value, name} = event.target;
+        this.setState({[name]: value});
+    };
+
+    render() {
+        const {searchQuery, language, sortBy} = this.state;
+        //  Nos suscribimos al evento en onSubmit
+        return (
+            <form
+                className="repositories__search-form"
+                onSubmit={this.handleOnSubmit}
+            >
+                <LanguageDropdown
+                    name="language"
+                    value={language}
+                    onChange={this.handleOnChange}
+                />
+                <SortDropdown
+                    name="sortBy"
+                    value={sortBy}
+                    onChange={this.handleOnChange}
+                />
+                <SearchBarInput
+                    name="searchQuery"
+                    value={searchQuery}
+                    onChange={this.handleOnChange}
+                />
+                <button
+                    className="repositories__search-button"
+                    type="submit"
+                >
+                    Search
+                </button>
+            </form>
+        );
+    }
+}
+
+// No se olviden de los prop-types!!!
+RepositorySearchBar.propTypes = {
+    onSearchSubmit: PropTypes.func
+};
+
+export default RepositorySearchBar;
+
+```
 
 
+Ahora, regresemos a nuestro componente `Repositories` y suscribámoslo al evento `onSearchSubmit`. 
 
+```
+Repositories.js
+render() {
+        const {repositoriesList, loading} = this.state;
+        return (
+            <div className="repositories">
+                <RepositorySearchBar onSearchSubmit={this.handleSearchSubmit}/>
+                <div className="repositories__title">
+                    <h1>Repositories</h1>
+                </div>
+                {loading ?
+                    (<LoadingSpinner/>)
+                    :
+                    (<RepositoriesGrid repositoriesList={repositoriesList}/>)
+                }
+            </div>
+        );
+    }
+```
 
+El método `handleSearchSubmit` recibirá el estado de `RepositorySearchBar` y utilizará el mismo método `getRepositories` que utilizamos en `componentDidMount`. Para no duplicar código, movamos la lógica de `componentDidMount` a su propio método y llamémoslo `obtainRepositories`. Ahora tanto `handleSearchSubmit ` y `componentDidMount` pueden utilizarse para buscar repositorios. 
 
-La página de **Buscar Repositorios** está compuesta por dos componentes: 
+Al final su archivo `Repositories.js` debió quedar algo así: 
 
-- Coding  session
-  - Crear componente Repositories
-  - Agregar método componentDidMount y hacer llamada a githubClient para traer los repos
-  - Mostrar los repos en consola con console.log (solo para que vean que si están llegando)
-  - Agregar repos al state
-  -  Agregar el grid
-  -  Crear el RepositoryCard
-  - Crear RepositoriesGrid y mover todo lo relacionado  al grid ahi
-  - Agregar LoadingSpinner
-  -  Agregar Input the texto (\<- explicar controlled inputs
-  -  Agregar Search button
-  -  Crear SearchBar y mover todo lo relacionado dentro de ese componente
-  -  Explicar como el estate de SearchBar será comunicado a su padre(Repositories)
-  - Agregar dropdowns
-  -  Hacer un número musical que termine con un beso apasionado
-  -  Explicar React Router, agregar configuración y primera ruta
+```
+Repositories.js
+import React, {Component} from 'react';
+import * as githubClient from "../../services/githubClient/githubClient";
+import './Repositories.css';
+import RepositoriesGrid from "./components/RepositoryGrid/RepositoryGrid";
+import RepositorySearchBar from "./components/RepositorySearchBar/RepositorySearchBar";
+import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 
+class Repositories extends Component {
+
+    state = {
+        repositoriesList: [],
+        loading: true
+    };
+// Toda su lógica se movio a obtainRepositories
+    componentDidMount() {
+        this.obtainRepositories();
+    }
+
+//Método para buscar repositorios
+    obtainRepositories = ({searchQuery = '', language = 'php', sortBy = 'stars'} = {}) => {
+        this.setState({loading: true});
+        return githubClient.getRepositories(searchQuery, language, sortBy)
+            .then(repositoriesList => {
+                this.setState({
+                    repositoriesList,
+                    loading: false
+                });
+            });
+    };
+
+// Método que obtiene los valores de búsqueda y los utiliza para solicitar
+// los repositorios
+    handleSearchSubmit = (filterParameters) => {
+        this.obtainRepositories(filterParameters);
+    };
+
+    render() {
+        const {repositoriesList, loading} = this.state;
+        return (
+            <div className="repositories">
+                <RepositorySearchBar onSearchSubmit={this.handleSearchSubmit}/>
+                <div className="repositories__title">
+                    <h1>Repositories</h1>
+                </div>
+                {loading ?
+                    (<LoadingSpinner/>)
+                    :
+                    (<RepositoriesGrid repositoriesList={repositoriesList}/>)
+                }
+            </div>
+        );
+    }
+}
+
+export default Repositories;
+
+```
+
+Si todo salió bien ya tienen lista la primera página de nuestra innovadora app hecha en React.
+
+<p align='center'>
+<img src='./images/repositories-final.png' width='800' alt='repo-browser'>
+</p>
