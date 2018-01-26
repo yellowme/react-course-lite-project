@@ -324,7 +324,7 @@ export default Repositories;
 
 El mensaje ya no debe aparecer. Pero vamos a **METERLE MÁS DISEÑO**. Agreguemos el componente `LoadingSpiner` de la siguiente manera:
 
-```
+```js
 //Repositories.js
 render() {
         const {repositoriesList, loading} = this.state;
