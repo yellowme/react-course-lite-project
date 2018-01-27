@@ -1,6 +1,6 @@
 # React Router
 
-![Logo React Router](./images/logo-react-router.png)
+![Logo React Router][image-1]
 
 Antes de comentar que es [React Router][1] es necesario explicar por qué es una de las librerías más usadas de React. Mayormente las aplicaciones realizadas con React(o Vue, o Angular) son Single Page Applications(SPAs). Las SPAs son aplicaciones que NO recargan la página por cada interacción del usuario, en cambio, toda la manipulación de datos la realizan de forma oculta(asíncrona) y  tratan de imitar la interacción de una aplicación nativa.  Ejemplos de SPAs son los sitios _Gmail_, _Twitter_, _Inbox_ y _Trello_. 
 
@@ -15,7 +15,6 @@ Nuestra aplicación es una SPA, es decir, se renderiza en una sola página, eso 
 * Navegar entre las páginas de nuestra aplicación usando links
 * Regresar a la página anterior al hacer clic en el botón de back,
 * etc.
-	  
 
 ## Configuración de React Router
 
@@ -100,7 +99,7 @@ Recibe dos props:
 
 ### `Switch`
 
-Este componente se encarga de que solo se renderice el primer componente el cual su path coincida con la URL del navegador. Por ejemplo si tuviéramos dos `Route` sin un ``Switch```de la siguiente manera: 
+Este componente se encarga de que solo se renderice el primer componente el cual su path coincida con la URL del navegador. Por ejemplo si tuviéramos dos `Route` sin un \`\`Switch\`\`\`de la siguiente manera: 
 
 ```html
 <Route exact path="/" component={Repositories}/> //<-- Se renderiza
@@ -132,7 +131,7 @@ Al hacer clic sobre este componente mandará al usuario a la ruta que tenga espe
 
 En el ejemplo anterior al hacer clic sobre este link React Router cambiará la URL del navegador a “/about” y renderizará el `Route` que tenga por “/about” por path.
 
-### NavLink 
+### NavLink
 
 Tiene la misma funcionalidad que el componente `Link`, la diferencia es que este componente acepta el prop className para poner estilos al link. 
 
@@ -298,6 +297,13 @@ Cuando nosotros hicimos la página de RepositoryDetails definimos la siguiente e
 		* ContributorsCard
 	* RepositoryInformation
 
+Tu estructura de carpetas debería quedar algo así:
+
+<p align='center'>
+<img src='./images/repo-details-structure.png' width='400' alt='repo-browser'>
+</p>
+
+
 
 
 ## Referencias
@@ -309,3 +315,5 @@ Cuando nosotros hicimos la página de RepositoryDetails definimos la siguiente e
 [1]:	https://reacttraining.com/react-router/ "React Router"
 [2]:	https://tylermcginnis.com/courses/react-router/ "Curso de React Router 4 por los creadores"
 [3]:	https://medium.com/@NeotericEU/single-page-application-vs-multiple-page-application-2591588efe58 "SPAs vs MPAs"
+
+[image-1]:	./images/logo-react-router.png
