@@ -11,9 +11,22 @@ const addSortOrder = (sortOrder) => {
     return sortOrder ? `&sort=${sortOrder}` : '';
 };
 
+//EMAIL USED TO SIGN ON GITHUB
+const username = '';
+//THE PASSWORD
+const password = '';
+const headers = new Headers();
+
+headers.append('Authorization', `Basic ${window.btoa(`${username}:${password}`)}`);
+
+
+
 const getFromAPI = (url) => {
     const encodedUrl = window.encodeURI(url);
-    return fetch(encodedUrl)
+    return fetch(encodedUrl,{
+        method: 'GET',
+        headers
+    })
         .then(response => response.json())
 };
 

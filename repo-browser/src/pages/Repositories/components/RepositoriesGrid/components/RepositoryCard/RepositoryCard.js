@@ -5,14 +5,15 @@ import Card, {CardAvatar, CardDetails, CardItem} from './../../../../../../compo
 import './RepositoryCard.css';
 
 const RepositoryCard = ({repository}) => (
-    <Card className="repositories__card">
-        <CardAvatar imageSrc={repository.ownerAvatarUrl}/>
-        <CardDetails>
-            <CardItem label="Name">{repository.name}</CardItem>
-            <CardItem label="Stars">{repository.startGazersCount}</CardItem>
-            <CardItem label="Forks">{repository.forksCount}</CardItem>
-        </CardDetails>
-    </Card>
+        <Card className="repositories__card">
+            <CardAvatar imageSrc={repository.ownerAvatarUrl}/>
+            <CardDetails>
+                <CardItem label="Name">{repository.name}</CardItem>
+                <CardItem label="Stars">{repository.startGazersCount}</CardItem>
+                <CardItem label="Forks">{repository.forksCount}</CardItem>
+            </CardDetails>
+        </Card>
+
 );
 
 

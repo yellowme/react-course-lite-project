@@ -1,0 +1,11 @@
+.repository-details--information {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 40px;
+    min-height: 190px;
+}
+
+.repository-details__card {
+    width: 660px;
+    padding-left: 30px;
+}

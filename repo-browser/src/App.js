@@ -1,16 +1,15 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './App.css';
-
-import Repositories from "./pages/Repositories/Repositories";
+import AppRoutes from './pages/AppRoutes';
 
 class App extends Component {
-  render() {
-    return (
-      <div>
-        <Repositories />
-      </div>
-    );
-  }
+    render() {
+        return (
+            <div className="app">
+                <AppRoutes/>
+            </div>
+        );
+    }
 }
 
 export default App;
